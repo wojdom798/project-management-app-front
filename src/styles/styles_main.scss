@@ -17,3 +17,18 @@ body
 {
     color: #00C851
 }
+
+#main-project-list
+{
+    padding: 10px 25px;
+
+    & > *
+    {
+        margin-bottom: 20px;
+
+        & > *
+        {
+            margin-bottom: 10px;
+        }
+    }
+}

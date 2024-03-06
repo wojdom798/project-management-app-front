@@ -22,7 +22,34 @@ function Main()
   }, []);
 
   return (
-    <h1 id="main-header">{message}</h1>
+    <div id="main-project-list">
+      <div className="project">
+        <h1 className="project-title">{"My Project 1"}</h1>
+        <p className="project-description">
+          {"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa eget egestas purus viverra accumsan in nisl nisi. Nibh cras pulvinar mattis nunc sed blandit. Vestibulum lorem sed risus ultricies tristique nulla aliquet. Vulputate enim nulla aliquet porttitor. Pulvinar neque laoreet suspendisse interdum. Nullam non nisi est sit amet facilisis magna. Vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt. Facilisis leo vel fringilla est ullamcorper eget nulla facilisi. Mus mauris vitae ultricies leo integer malesuada nunc. Pellentesque elit eget gravida cum sociis. Scelerisque varius morbi enim nunc faucibus. Faucibus pulvinar elementum integer enim neque. Sociis natoque penatibus et magnis dis parturient montes. Vel risus commodo viverra maecenas accumsan lacus."}
+        </p>
+        <ul className="list-of-features">
+          <li>feature 1 (priority=1, core feature); isFinished=false</li>
+          <li>feature 2 (priority=1, core feature); isFinished=false</li>
+          <li>feature 3 (priority=1, core feature); isFinished=true</li>
+          <li>feature 4 (priority=2); isFinished=false</li>
+          <li>feature 5 (priority=3); isFinished=false</li>
+        </ul>
+      </div>
+
+
+      <div className="project">
+        <h1 className="project-title">{"My Project 2"}</h1>
+        <p className="project-description">
+          {"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa eget egestas purus viverra accumsan in nisl nisi. Nibh cras pulvinar mattis nunc sed blandit. Vestibulum lorem sed risus ultricies tristique nulla aliquet. Vulputate enim nulla aliquet porttitor. Pulvinar neque laoreet suspendisse interdum. Nullam non nisi est sit amet facilisis magna. Vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt. Facilisis leo vel fringilla est ullamcorper eget nulla facilisi. Mus mauris vitae ultricies leo integer malesuada nunc. Pellentesque elit eget gravida cum sociis. Scelerisque varius morbi enim nunc faucibus. Faucibus pulvinar elementum integer enim neque. Sociis natoque penatibus et magnis dis parturient montes. Vel risus commodo viverra maecenas accumsan lacus."}
+        </p>
+        <ul className="list-of-features">
+          <li>feature 1 (priority=1, core feature); isFinished=false</li>
+          <li>feature 2 (priority=2); isFinished=true</li>
+        </ul>
+      </div>
+
+    </div>
   );
 }
 
