@@ -19,7 +19,7 @@ function Feature(props: FeatureProps)
         >
             <h3>{props.name}</h3>
             <p>priority: {props.priority}</p>
-            <p>is finished: {props.isFinished}</p>
+            <p>is finished: {props.isFinished ? "true" : "false"}</p>
         </div>
     );
 }

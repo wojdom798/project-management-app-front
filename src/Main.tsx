@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Project from "./components/Project";
-
-const projectDescriptionPlaceholder = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa eget egestas purus viverra accumsan in nisl nisi. Nibh cras pulvinar mattis nunc sed blandit. Vestibulum lorem sed risus ultricies tristique nulla aliquet. Vulputate enim nulla aliquet porttitor. Pulvinar neque laoreet suspendisse interdum. Nullam non nisi est sit amet facilisis magna. Vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt. Facilisis leo vel fringilla est ullamcorper eget nulla facilisi. Mus mauris vitae ultricies leo integer malesuada nunc. Pellentesque elit eget gravida cum sociis. Scelerisque varius morbi enim nunc faucibus. Faucibus pulvinar elementum integer enim neque. Sociis natoque penatibus et magnis dis parturient montes. Vel risus commodo viverra maecenas accumsan lacus."
+import { IDebugData, IProject } from "./types/sharedTypes";
 
 function Main()
 {
   const [message, setMessage] = useState<string>("");
+  const [projects, setProjects] = useState<IProject[]>([]);
 
   useEffect(() =>
   {
@@ -18,9 +18,10 @@ function Main()
         },
         mode: "cors" as RequestMode
       };
-      const response = await fetch("/api/test", init);
-      const data = await response.json();
-      setMessage(data.message);
+      const response = await fetch("/api/get-debug-data", init);
+      const data = await response.json() as IDebugData;
+      // setMessage(data.message);
+      setProjects(data.projects);
     })();
   }, []);
 
@@ -66,7 +67,18 @@ function Main()
       <div id="side-menu"></div>
 
       <div id="main-area">
-        <Project descriptionPlaceholder={projectDescriptionPlaceholder} />
+        {
+          projects.length > 0 ?
+           (
+            <Project
+              name={projects[0].name}
+              description={projects[0].description}
+              features={projects[0].features}
+            /> 
+           ) : (
+            <p>The list of Projects is empty.</p>
+           )
+        }
       </div>
     </div>
   );

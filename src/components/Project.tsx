@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Feature, { FeatureProps } from "./Feature";
+import { IProject } from "../types/sharedTypes";
 
 const projectData = {
     title: "My Project 1",
@@ -24,18 +25,18 @@ const projectData = {
     ]
 }
 
-interface ProjectProps
-{
-    descriptionPlaceholder: string;
-};
+// interface ProjectProps
+// {
+//     descriptionPlaceholder: string;
+// };
 
-function Project(props: ProjectProps)
+function Project(props: IProject)
 {
 
     const getFeatures = () =>
     {
         let i = 0;
-        return projectData.features.map((feature: FeatureProps) =>
+        return props.features.map((feature: FeatureProps) =>
         {
             return (
                 <Feature
@@ -50,8 +51,8 @@ function Project(props: ProjectProps)
 
     return (
         <div className="project">
-            <h2 className="project__title">{projectData.title}</h2>
-            <p className="project__description">{props.descriptionPlaceholder}</p>
+            <h2 className="project__title">{props.name}</h2>
+            <p className="project__description">{props.description}</p>
 
             <div className="project__feature-list">
                 { getFeatures() }
