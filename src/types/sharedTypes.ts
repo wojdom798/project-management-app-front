@@ -14,5 +14,10 @@ export interface IProject
 
 export interface IDebugData
 {
-    projects: IProject[]
+    projects: IProject[];
+};
+
+export interface ITask
+{
+    text: string;
 };
