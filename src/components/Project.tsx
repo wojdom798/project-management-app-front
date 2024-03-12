@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Feature, { FeatureProps } from "./Feature";
-import { IProject } from "../types/sharedTypes";
+import Feature from "./Feature";
+import { IProjectProps } from "../types/frontendSpecificTypes";
+import { IFeature, ITask } from "../types/sharedTypes";
 
 const projectData = {
     title: "My Project 1",
@@ -30,20 +31,22 @@ const projectData = {
 //     descriptionPlaceholder: string;
 // };
 
-function Project(props: IProject)
+function Project(props: IProjectProps)
 {
 
     const getFeatures = () =>
     {
         let i = 0;
-        return props.features.map((feature: FeatureProps) =>
+        return props.features.map((feature: IFeature) =>
         {
             return (
                 <Feature
-                    key={i++}
+                    key={feature.id}
+                    id={feature.id}
                     name={feature.name}
                     priority={feature.priority}
                     isFinished={feature.isFinished}
+                    tasks={props.tasks.filter((t: ITask) => (t.feature_id == feature.id))}
                 />
             );
         });

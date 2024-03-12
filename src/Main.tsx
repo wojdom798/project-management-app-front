@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Project from "./components/Project";
-import { IDebugData, IProject } from "./types/sharedTypes";
+import { IDebugData, IProject, ITask } from "./types/sharedTypes";
 
 function Main()
 {
   const [message, setMessage] = useState<string>("");
   const [projects, setProjects] = useState<IProject[]>([]);
+  const [tasks, setTasks] = useState<ITask[]>([]);
 
   useEffect(() =>
   {
@@ -22,6 +23,7 @@ function Main()
       const data = await response.json() as IDebugData;
       // setMessage(data.message);
       setProjects(data.projects);
+      setTasks(data.tasks);
     })();
   }, []);
 
@@ -71,9 +73,11 @@ function Main()
           projects.length > 0 ?
            (
             <Project
+              id={projects[0].id}
               name={projects[0].name}
               description={projects[0].description}
               features={projects[0].features}
+              tasks={tasks}
             /> 
            ) : (
             <p>The list of Projects is empty.</p>

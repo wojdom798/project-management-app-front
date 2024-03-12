@@ -1,31 +1,25 @@
-export interface IProject
+import { IFeature, ITask } from "./sharedTypes";
+
+export interface IProjectProps
 {
     id: number;
     name: string;
     description: string;
     features: IFeature[];
+    tasks: ITask[];
 };
 
-
-export interface IFeature
+export interface IFeatureProps
 {
     id: number;
     name: string;
     priority: number;
     isFinished: boolean;
+    tasks: ITask[];
 };
 
-
-export interface ITask
+export interface ITaskProps
 {
     id: number;
-    feature_id: number;
     name: string;
-};
-
-
-export interface IDebugData
-{
-    projects: IProject[];
-    tasks: ITask[];
 };

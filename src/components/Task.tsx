@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { ITask } from "../types/sharedTypes";
+import { ITaskProps } from "../types/frontendSpecificTypes";
 
-function Task({ text }: ITask)
+function Task({ id, name }: ITaskProps)
 {
     return (
         <li className="task">
-            { text }
+            { name }
         </li>
     );
 }

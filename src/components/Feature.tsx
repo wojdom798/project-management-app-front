@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import Task from "./Task";
 import { ITask } from "../types/sharedTypes";
+import { IFeatureProps, ITaskProps } from "../types/frontendSpecificTypes";
 
-export interface FeatureProps
-{
-    name: string;
-    priority: number;
-    isFinished: boolean;
-};
+// export interface FeatureProps
+// {
+//     id: number;
+//     name: string;
+//     priority: number;
+//     isFinished: boolean;
+// };
 
 const listOfTasksDbg = [
     {
@@ -26,7 +28,7 @@ interface ITaskDbg
     name: string;
 }
 
-function Feature(props: FeatureProps)
+function Feature(props: IFeatureProps)
 {
     return (
         <div className="feature-wrapper">
@@ -44,8 +46,8 @@ function Feature(props: FeatureProps)
             </div>
 
             <ul className="list-of-tasks">
-                { listOfTasksDbg.map((taskDbg: ITaskDbg) => (
-                    <Task key={taskDbg.id} text={taskDbg.name} />)) }
+                { props.tasks.map((task: ITaskProps) => (
+                    <Task key={task.id} id={task.id} name={task.name} />)) }
             </ul>
         </div>
     );
