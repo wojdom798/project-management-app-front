@@ -3,31 +3,6 @@ import Task from "./Task";
 import { ITask } from "../types/sharedTypes";
 import { IFeatureProps, ITaskProps } from "../types/frontendSpecificTypes";
 
-// export interface FeatureProps
-// {
-//     id: number;
-//     name: string;
-//     priority: number;
-//     isFinished: boolean;
-// };
-
-const listOfTasksDbg = [
-    {
-        id: 1,
-        name: "task 1" 
-    },
-    {
-        id: 2,
-        name: "task 2" 
-    }
-]
-
-interface ITaskDbg
-{
-    id: number;
-    name: string;
-}
-
 function Feature(props: IFeatureProps)
 {
     return (

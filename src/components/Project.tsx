@@ -3,40 +3,11 @@ import Feature from "./Feature";
 import { IProjectProps } from "../types/frontendSpecificTypes";
 import { IFeature, ITask } from "../types/sharedTypes";
 
-const projectData = {
-    title: "My Project 1",
-    description: "",
-
-    features: [
-        {
-            name: "feature 1",
-            priority: 1,
-            isFinished: false
-        },
-        {
-            name: "feature 2",
-            priority: 2,
-            isFinished: false
-        },
-        {
-            name: "feature 3",
-            priority: 1,
-            isFinished: false
-        },
-    ]
-}
-
-// interface ProjectProps
-// {
-//     descriptionPlaceholder: string;
-// };
-
 function Project(props: IProjectProps)
 {
 
     const getFeatures = () =>
     {
-        let i = 0;
         return props.features.map((feature: IFeature) =>
         {
             return (
