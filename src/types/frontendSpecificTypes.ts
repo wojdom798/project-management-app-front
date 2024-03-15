@@ -14,7 +14,7 @@ export interface IFeatureProps
     id: number;
     name: string;
     priority: number;
-    isFinished: boolean;
+    progress: number;
     tasks: ITask[];
 };
 
@@ -22,4 +22,5 @@ export interface ITaskProps
 {
     id: number;
     name: string;
+    isFinished: boolean;
 };

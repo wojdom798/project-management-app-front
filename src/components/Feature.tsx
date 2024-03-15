@@ -16,13 +16,19 @@ function Feature(props: IFeatureProps)
             >
                 <h3>{props.name}</h3>
                 <p>priority: {props.priority}</p>
-                <p>is finished: {props.isFinished ? "true" : "false"}</p>
+                <p>progress: {`${props.progress}%`}</p>
                 
             </div>
 
             <ul className="list-of-tasks">
                 { props.tasks.map((task: ITaskProps) => (
-                    <Task key={task.id} id={task.id} name={task.name} />)) }
+                    <Task
+                        key={task.id}
+                        id={task.id}
+                        name={task.name}
+                        isFinished={task.isFinished}
+                    />
+                ))}
             </ul>
         </div>
     );

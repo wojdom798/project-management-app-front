@@ -16,7 +16,7 @@ function Project(props: IProjectProps)
                     id={feature.id}
                     name={feature.name}
                     priority={feature.priority}
-                    isFinished={feature.isFinished}
+                    progress={feature.progress}
                     tasks={props.tasks.filter((t: ITask) => (t.feature_id == feature.id))}
                 />
             );
