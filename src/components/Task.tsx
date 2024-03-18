@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { ITaskProps } from "../types/frontendSpecificTypes";
 
-function Task({ id, name, isFinished }: ITaskProps)
+function Task({ id, name, isFinished, setIsFinished }: ITaskProps)
 {
     const [isFinishedUI, toggleFinished] = useState<boolean>(isFinished);
+
+    const handleToggleFinishedClick = () =>
+    {
+        const currentIsFinished = !isFinishedUI;
+        toggleFinished(currentIsFinished);
+        setIsFinished(id, currentIsFinished); // prop
+    };
 
     return (
         <li
@@ -15,7 +22,8 @@ function Task({ id, name, isFinished }: ITaskProps)
         >
             <span>{ name }</span>
             <button
-                onClick={ () => toggleFinished(!isFinishedUI) }
+                // onClick={ () => toggleFinished(!isFinishedUI) }
+                onClick={handleToggleFinishedClick}
             >
                 toggle finished
             </button>

@@ -6,18 +6,20 @@ import { IFeatureProps, ITaskProps } from "../types/frontendSpecificTypes";
 function Feature(props: IFeatureProps)
 {
     const [progressUI, setProgressUI] = useState<number>(props.progress);
+    const [tasks, setTasks] = useState<ITask[]>([]);
 
     useEffect(() =>
     {
+        setTasks(props.tasks);
         setProgressUI(calculateProgress());
     }, []);
 
     const calculateProgress = () =>
     {
-        const maxProgress = props.tasks.length;
+        const maxProgress = tasks.length;
         let currentProgress = 0;
 
-        for (let task of props.tasks)
+        for (let task of tasks)
         {
             if (task.isFinished)
             {
@@ -26,6 +28,18 @@ function Feature(props: IFeatureProps)
         }
 
         return Math.round((currentProgress / maxProgress) * 100);
+    };
+
+    const updateFinishedTask = (taskId: number, isFinished: boolean) =>
+    {
+        for (let task of tasks)
+        {
+            if (task.id === taskId)
+            {
+                task.isFinished = isFinished;
+            }
+        }
+        setProgressUI(calculateProgress());
     };
 
     return (
@@ -44,12 +58,13 @@ function Feature(props: IFeatureProps)
             </div>
 
             <ul className="list-of-tasks">
-                { props.tasks.map((task: ITaskProps) => (
+                { props.tasks.map((task: ITask) => (
                     <Task
                         key={task.id}
                         id={task.id}
                         name={task.name}
                         isFinished={task.isFinished}
+                        setIsFinished={updateFinishedTask}
                     />
                 ))}
             </ul>

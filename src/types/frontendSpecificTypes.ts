@@ -23,4 +23,5 @@ export interface ITaskProps
     id: number;
     name: string;
     isFinished: boolean;
+    setIsFinished: (taskId: number, isFinished: boolean) => any;
 };
