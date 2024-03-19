@@ -30,16 +30,34 @@ function Feature(props: IFeatureProps)
         return Math.round((currentProgress / maxProgress) * 100);
     };
 
-    const updateFinishedTask = (taskId: number, isFinished: boolean) =>
+    const updateFinishedTask = async (taskId: number, isFinished: boolean) =>
     {
-        for (let task of tasks)
+        const payload = JSON.stringify({
+            taskId: taskId,
+            isFinished: isFinished
+        });
+
+        const requestInit = {
+            method: "POST",
+            body: payload,
+            headers: { "Content-Type": "application/json" }
+        };
+        
+        const response = await fetch("/api/update-feature-progress", requestInit);
+        
+        if (response.ok)
         {
-            if (task.id === taskId)
+            const responseData = await response.json();
+            // console.log(responseData);
+            for (let task of tasks)
             {
-                task.isFinished = isFinished;
+                if (task.id === taskId)
+                {
+                    task.isFinished = isFinished;
+                }
             }
+            setProgressUI(calculateProgress());
         }
-        setProgressUI(calculateProgress());
     };
 
     return (
