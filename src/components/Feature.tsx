@@ -32,9 +32,30 @@ function Feature(props: IFeatureProps)
 
     const updateFinishedTask = async (taskId: number, isFinished: boolean) =>
     {
+        let newProgress = 0;
+        let tasksFinished = 0;
+        for (let task of tasks)
+        {
+            if (task.isFinished)
+            {
+                tasksFinished++;
+            }
+        }
+        if (isFinished)
+        {
+            tasksFinished++;
+        }
+        else
+        {
+            tasksFinished--;
+        }
+        newProgress = Math.round((tasksFinished / tasks.length) * 100);
+
         const payload = JSON.stringify({
             taskId: taskId,
-            isFinished: isFinished
+            isFinished: isFinished,
+            featureId: props.id,
+            newProgress: newProgress
         });
 
         const requestInit = {
