@@ -11,10 +11,10 @@ function Feature(props: IFeatureProps)
     useEffect(() =>
     {
         setTasks(props.tasks);
-        setProgressUI(calculateProgress());
+        setProgressUI(calculateProgress(props.tasks));
     }, []);
 
-    const calculateProgress = () =>
+    const calculateProgress = (tasks: ITask[]) =>
     {
         const maxProgress = tasks.length;
         let currentProgress = 0;
@@ -77,7 +77,7 @@ function Feature(props: IFeatureProps)
                     task.isFinished = isFinished;
                 }
             }
-            setProgressUI(calculateProgress());
+            setProgressUI(calculateProgress(tasks));
         }
     };
 
