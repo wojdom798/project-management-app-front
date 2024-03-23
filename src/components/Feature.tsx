@@ -85,7 +85,7 @@ function Feature(props: IFeatureProps)
         <div className="feature-wrapper">
             <div
                 className={
-                    props.priority == 1 ?
+                    props.priority === 1 ?
                     "feature feature--core" :
                     "feature"
                 }
