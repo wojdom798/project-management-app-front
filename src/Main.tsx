@@ -27,7 +27,7 @@ function Main()
 
   return (
     <div id="project-dashboard">
-      <div id="side-menu"></div>
+      {/* <div id="side-menu"></div> */}
 
       <div id="main-area">
         {

@@ -31,6 +31,12 @@ function Project(props: IProjectProps)
             <div className="project__feature-list">
                 { getFeatures() }
             </div>
+
+            <div className="project__new-feature-button">
+                <button
+                    onClick={ () => { console.log("new feature button clicked") } }
+                >new feature</button>
+            </div>
         </div>
     );
 }
