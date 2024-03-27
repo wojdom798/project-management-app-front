@@ -34,14 +34,30 @@ function Project(props: IProjectProps)
         setIsCreateNewFeatureFormActive(true);
     };
 
-    const handleCreateNewFeatureFormSubmit = (event: SyntheticEvent) =>
+    const handleCreateNewFeatureFormSubmit = async (event: SyntheticEvent) =>
     {
         event.preventDefault();
+
         const submitData = {
             name: nameField,
             priority: priorityField
         }
-        console.log(submitData);
+
+        const payload = JSON.stringify(submitData);
+
+        const requestInit = {
+            method: "POST",
+            body: payload,
+            headers: { "Content-Type": "application/json" }
+        };
+        
+        const response = await fetch("/api/create-new-feature", requestInit);
+
+        if (response.ok)
+        {
+            const responseData = await response.json();
+            // console.log(responseData);
+        }
     };
 
     const handleCreateNewFeatureFormCancel = (event: SyntheticEvent) =>
