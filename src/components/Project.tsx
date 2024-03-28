@@ -56,7 +56,13 @@ function Project(props: IProjectProps)
         if (response.ok)
         {
             const responseData = await response.json();
-            // console.log(responseData);
+            // console.log(responseData.payload.newFeatureId);
+
+            props.addNewFeatureToList({
+                ...submitData,
+                id: responseData.payload.newFeatureId,
+                progress: 0
+            });
         }
     };
 

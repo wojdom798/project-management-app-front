@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Project from "./components/Project";
-import { IDebugData, IProject, ITask } from "./types/sharedTypes";
+import { IDebugData, IFeature, IProject, ITask } from "./types/sharedTypes";
 
 function Main()
 {
@@ -25,6 +25,13 @@ function Main()
     })();
   }, []);
 
+  const handleAddNewFeatureToList = (feature: IFeature) =>
+  {
+    const projectsCopy = [...projects];
+    projectsCopy[0].features.push(feature);
+    setProjects(projectsCopy);
+  };
+
   return (
     <div id="project-dashboard">
       {/* <div id="side-menu"></div> */}
@@ -39,6 +46,7 @@ function Main()
               description={projects[0].description}
               features={projects[0].features}
               tasks={tasks}
+              addNewFeatureToList={handleAddNewFeatureToList}
             /> 
            ) : (
             <p>The list of Projects is empty.</p>
