@@ -19,6 +19,11 @@ function Feature(props: IFeatureProps)
         const maxProgress = tasks.length;
         let currentProgress = 0;
 
+        if (tasks.length == 0)
+        {
+            return 0;
+        }
+
         for (let task of tasks)
         {
             if (task.isFinished)
