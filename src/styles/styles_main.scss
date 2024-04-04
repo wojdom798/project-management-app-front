@@ -194,4 +194,27 @@ body
         background-color: #00C851;
         color: #054e22;
     }
+
+    button
+    {
+        --transition-speed: 120ms;
+        padding: 4px 7px;
+        outline: none;
+        border: none;
+        font-size: 1rem;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #FAFAFA;
+        background-color: #4285f4;
+        cursor: pointer;
+        border: 1px solid #0d47a1;
+        border-radius: 2px;
+        transition: background-color var(--transition-speed) linear,
+                    color var(--transition-speed) linear;
+
+        &:hover
+        {
+            background-color: #0d47a1;
+            color: #FFF;
+        }
+    }
 }
