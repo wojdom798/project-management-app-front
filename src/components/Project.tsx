@@ -104,19 +104,29 @@ function Project(props: IProjectProps)
                     <form>
                         <h3>Create New Feature</h3>
 
-                        <input
-                            type={"text"}
-                            value={nameField}
-                            placeholder={"name"}
-                            onChange={handleNewFeatureNameInputChange}
-                        />
+                        <div className="form-input-group">
+                            <label htmlFor="nameInput">name</label>
+                            <input
+                                id={"nameInput"}
+                                name={"nameInput"}
+                                type={"text"}
+                                value={nameField}
+                                placeholder={"name"}
+                                onChange={handleNewFeatureNameInputChange}
+                            />
+                        </div>
 
-                        <input
-                            type={"text"}
-                            value={priorityField}
-                            placeholder={"priority (positive number)"}
-                            onChange={handleNewFeaturePriorityInputChange}
-                        />
+                        <div className="form-input-group">
+                            <label htmlFor="priorityInput">priority</label>
+                            <input
+                                id={"priorityInput"}
+                                name={"priorityInput"}
+                                type={"text"}
+                                value={priorityField}
+                                placeholder={"priority (positive number)"}
+                                onChange={handleNewFeaturePriorityInputChange}
+                            />
+                        </div>
 
                         <button
                             onClick={handleCreateNewFeatureFormSubmit}
