@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, SyntheticEvent } from "react";
 import Task from "./Task";
 import { ITask } from "../types/sharedTypes";
 import { IFeatureProps, ITaskProps } from "../types/frontendSpecificTypes";
@@ -7,6 +7,12 @@ function Feature(props: IFeatureProps)
 {
     const [progressUI, setProgressUI] = useState<number>(props.progress);
     const [tasks, setTasks] = useState<ITask[]>([]);
+    const [isCreateNewTaskFormActive, setIsCreateNewTaskFormActive] =
+        useState<boolean>(false);
+
+    // new task form inputs
+    const [nameField, setNameField] = useState<string>("");
+
 
     useEffect(() =>
     {
@@ -86,6 +92,38 @@ function Feature(props: IFeatureProps)
         }
     };
 
+    const handleCreateNewFeatureFormSubmit = async (event: SyntheticEvent) =>
+    {
+        event.preventDefault();
+
+        const submitData = {
+            name: nameField,
+            featureId: props.id
+        }
+
+        console.log(submitData);
+
+        // setIsCreateNewTaskFormActive(false);
+    }
+
+    const handleCreateNewTaskFormCancel = (event: SyntheticEvent) =>
+    {
+        event.preventDefault();
+        setIsCreateNewTaskFormActive(false);
+    };
+
+    const handleCreateNewTaskButtonClick = (event: SyntheticEvent) =>
+    {
+        event.preventDefault();
+        setIsCreateNewTaskFormActive(true);
+    };
+
+    const handleNewTaskNameInputChange = (event: SyntheticEvent) =>
+    {
+        const inputValue = (event.target as HTMLInputElement).value;
+        setNameField(inputValue);
+    };
+
     return (
         <div className="feature-wrapper">
             <div
@@ -112,6 +150,38 @@ function Feature(props: IFeatureProps)
                     />
                 ))}
             </ul>
+
+            <div className="feature__new-task-button">
+            { isCreateNewTaskFormActive ?
+            (
+                <form>
+                    <h3>Create New Task</h3>
+
+                    <div className="form-input-group">
+                        <label htmlFor={`task-${props.id}-name-input`}>name</label>
+                        <input
+                            id={`task-${props.id}-name-input`}
+                            name={`task-${props.id}-name-input`}
+                            type={"text"}
+                            value={nameField}
+                            placeholder={"name"}
+                            onChange={handleNewTaskNameInputChange}
+                        />
+                    </div>
+
+                    <button
+                        onClick={handleCreateNewFeatureFormSubmit}
+                    >submit</button>
+                    <button
+                        onClick={handleCreateNewTaskFormCancel}
+                    >cancel</button>
+                </form>
+            ):(
+                <button
+                    onClick={handleCreateNewTaskButtonClick}
+                >new task</button>
+            )}
+            </div>
         </div>
     );
 }
