@@ -169,12 +169,14 @@ function Feature(props: IFeatureProps)
                         />
                     </div>
 
-                    <button
-                        onClick={handleCreateNewFeatureFormSubmit}
-                    >submit</button>
-                    <button
-                        onClick={handleCreateNewTaskFormCancel}
-                    >cancel</button>
+                    <div className="button-group">
+                        <button
+                            onClick={handleCreateNewFeatureFormSubmit}
+                        >submit</button>
+                        <button
+                            onClick={handleCreateNewTaskFormCancel}
+                        >cancel</button>
+                    </div>
                 </form>
             ):(
                 <button
