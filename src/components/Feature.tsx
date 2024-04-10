@@ -101,7 +101,22 @@ function Feature(props: IFeatureProps)
             featureId: props.id
         }
 
-        console.log(submitData);
+        const payload = JSON.stringify(submitData);
+
+        const requestInit = {
+            method: "POST",
+            body: payload,
+            headers: { "Content-Type": "application/json" }
+        };
+        
+        const response = await fetch("/api/create-new-task", requestInit);
+
+        if (response.ok)
+        {
+            const responseData = await response.json();
+
+            console.log(responseData);
+        }
 
         // setIsCreateNewTaskFormActive(false);
     }
