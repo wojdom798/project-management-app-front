@@ -92,9 +92,16 @@ function Feature(props: IFeatureProps)
         }
     };
 
-    const handleCreateNewFeatureFormSubmit = async (event: SyntheticEvent) =>
+    const handleCreateNewTaskFormSubmit = async (event: SyntheticEvent) =>
     {
         event.preventDefault();
+
+        interface IResponseData
+        {
+            success: boolean,
+            errors: string[],
+            payload: any
+        };
 
         const submitData = {
             name: nameField,
@@ -113,9 +120,15 @@ function Feature(props: IFeatureProps)
 
         if (response.ok)
         {
-            const responseData = await response.json();
+            const responseData = (await response.json()) as IResponseData;
 
             console.log(responseData);
+
+            if (responseData.success)
+            {
+                // ...
+                console.log(responseData.payload as { newTaskId: number });
+            }
         }
 
         // setIsCreateNewTaskFormActive(false);
@@ -186,7 +199,7 @@ function Feature(props: IFeatureProps)
 
                     <div className="button-group">
                         <button
-                            onClick={handleCreateNewFeatureFormSubmit}
+                            onClick={handleCreateNewTaskFormSubmit}
                         >submit</button>
                         <button
                             onClick={handleCreateNewTaskFormCancel}
