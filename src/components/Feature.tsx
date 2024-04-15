@@ -121,13 +121,19 @@ function Feature(props: IFeatureProps)
         if (response.ok)
         {
             const responseData = (await response.json()) as IResponseData;
-
-            console.log(responseData);
+            
+            // console.log(responseData);
 
             if (responseData.success)
             {
-                // ...
-                console.log(responseData.payload as { newTaskId: number });
+                const newTask: ITask = {
+                    id: (responseData.payload as { newTaskId: number }).newTaskId,
+                    name: nameField,
+                    feature_id: props.id,
+                    isFinished: false
+                };
+
+                props.addNewTaskToList(newTask);
             }
         }
 

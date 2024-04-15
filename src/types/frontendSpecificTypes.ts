@@ -8,6 +8,7 @@ export interface IProjectProps
     features: IFeature[];
     tasks: ITask[];
     addNewFeatureToList: (feature: IFeature) => void;
+    addNewTaskToList: (task: ITask) => void;
 };
 
 export interface IFeatureProps
@@ -17,6 +18,7 @@ export interface IFeatureProps
     priority: number;
     progress: number;
     tasks: ITask[];
+    addNewTaskToList: (task: ITask) => void;
 };
 
 export interface ITaskProps

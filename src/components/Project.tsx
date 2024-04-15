@@ -24,6 +24,7 @@ function Project(props: IProjectProps)
                     priority={feature.priority}
                     progress={feature.progress}
                     tasks={props.tasks.filter((t: ITask) => (t.feature_id === feature.id))}
+                    addNewTaskToList={props.addNewTaskToList}
                 />
             );
         });

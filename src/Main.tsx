@@ -32,6 +32,11 @@ function Main()
     setProjects(projectsCopy);
   };
 
+  const handleAddNewTaskToList = (task: ITask) =>
+  {
+    setTasks(([] as ITask[]).concat(tasks, task));
+  };
+
   return (
     <div id="project-dashboard">
       {/* <div id="side-menu"></div> */}
@@ -47,6 +52,7 @@ function Main()
               features={projects[0].features}
               tasks={tasks}
               addNewFeatureToList={handleAddNewFeatureToList}
+              addNewTaskToList={handleAddNewTaskToList}
             /> 
            ) : (
             <p>The list of Projects is empty.</p>
