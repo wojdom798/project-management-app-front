@@ -12,6 +12,7 @@ function Feature(props: IFeatureProps)
 
     // new task form inputs
     const [nameField, setNameField] = useState<string>("");
+    const [closeButtonText, setCloseButtonText] = useState<string>("cancel");
 
 
     useEffect(() =>
@@ -132,7 +133,8 @@ function Feature(props: IFeatureProps)
                     feature_id: props.id,
                     isFinished: false
                 };
-
+                
+                setCloseButtonText("close");
                 props.addNewTaskToList(newTask);
             }
         }
@@ -209,7 +211,7 @@ function Feature(props: IFeatureProps)
                         >submit</button>
                         <button
                             onClick={handleCreateNewTaskFormCancel}
-                        >cancel</button>
+                        >{closeButtonText}</button>
                     </div>
                 </form>
             ):(
