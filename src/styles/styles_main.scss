@@ -59,10 +59,68 @@ body
 
 #main-area
 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
     padding: 10px 25px;
     flex-grow: 1;
     flex-shrink: 1;
     width: 85%;
+}
+
+.project-list-table-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-list-table
+{
+    background-color: #FAFAFA;
+    font-size: 1.1rem;
+    border-collapse: collapse;
+    border-radius: 2px;
+    overflow: hidden;
+
+
+    thead
+    {
+        background-color: #0288d1;
+        color: #F3F3F3;
+        text-align: left;
+        font-size: 1.2rem;
+    }
+
+    tbody
+    {
+        color: #333;
+    }
+
+    tbody tr:nth-child(2n+1)
+    {
+        background-color: #F3F3F3;
+    }
+
+    tbody tr:nth-child(2n)
+    {
+        background-color: #E5E5E5;
+    }
+
+    tbody tr:hover
+    {
+        background-color: #b3e5fc;
+        transition: background-color 200ms linear;
+    }
+
+    td,
+    th
+    {
+        padding: 10px;
+        padding-right: 70px;
+    }
 }
 
 // .project

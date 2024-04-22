@@ -25,6 +25,52 @@ function Main()
     })();
   }, []);
 
+
+  const renderProjectList = (projectList: IProject[]) =>
+  {
+    if (projectList.length == 0)
+    {
+      return (
+        <p>The list of Projects is empty.</p>
+      );
+    }
+
+    const projectListRows: any[] = [];
+
+    let i = 1;
+    for (const project of projectList)
+    {
+      let description = project.description
+      if (project.description.length > 40)
+      {
+        description = project.description.slice(0, 37) + "...";
+      }
+      projectListRows.push(
+        <tr key={project.id}>
+          <td>{i}</td>
+          <td>{project.name}</td>
+          <td>{description}</td>
+        </tr>
+      );
+      i++;
+    }
+
+    return (
+      <table className="project-list-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>name</th>
+            <th>description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {projectListRows}
+        </tbody>
+      </table>
+    );
+  };
+
   const handleAddNewFeatureToList = (feature: IFeature) =>
   {
     const projectsCopy = [...projects];
@@ -42,7 +88,7 @@ function Main()
       {/* <div id="side-menu"></div> */}
 
       <div id="main-area">
-        {
+        {/* {
           projects.length > 0 ?
            (
             <Project
@@ -57,7 +103,10 @@ function Main()
            ) : (
             <p>The list of Projects is empty.</p>
            )
-        }
+        } */}
+        <div className="project-list-table-container">
+          {renderProjectList(projects)}
+        </div>
       </div>
     </div>
   );
