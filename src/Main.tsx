@@ -7,6 +7,8 @@ function Main()
   const [projects, setProjects] = useState<IProject[]>([]);
   const [tasks, setTasks] = useState<ITask[]>([]);
 
+  const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
+
   useEffect(() =>
   {
     (async () =>
@@ -50,6 +52,11 @@ function Main()
           <td>{i}</td>
           <td>{project.name}</td>
           <td>{description}</td>
+          <td>
+            <button
+              onClick={ () => setSelectedProjectId(project.id) }
+            >select</button>
+          </td>
         </tr>
       );
       i++;
@@ -62,12 +69,53 @@ function Main()
             <th>#</th>
             <th>name</th>
             <th>description</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           {projectListRows}
         </tbody>
       </table>
+    );
+  };
+
+  const renderProject = () =>
+  {
+    if (selectedProjectId === null)
+    {
+      return (
+        <div className="project-list-table-container">
+          {renderProjectList(projects)}
+        </div>
+      );
+    }
+
+    let selectedProject: IProject | null = null;
+
+    for (const project of projects)
+    {
+      if (project.id === selectedProjectId)
+      {
+        selectedProject = project;
+        break;
+      }
+    }
+
+    if (!selectedProject)
+    {
+      return (<p>selected project does not exist (error).</p>);
+    }
+
+    return (
+      <Project
+        id={selectedProject.id}
+        name={selectedProject.name}
+        description={selectedProject.description}
+        features={selectedProject.features}
+        tasks={tasks}
+        addNewFeatureToList={handleAddNewFeatureToList}
+        addNewTaskToList={handleAddNewTaskToList}
+      />
     );
   };
 
@@ -104,9 +152,13 @@ function Main()
             <p>The list of Projects is empty.</p>
            )
         } */}
-        <div className="project-list-table-container">
+
+        {/* <div className="project-list-table-container">
           {renderProjectList(projects)}
-        </div>
+        </div> */}
+
+        {renderProject()}
+
       </div>
     </div>
   );
