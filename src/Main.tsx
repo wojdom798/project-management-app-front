@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, SyntheticEvent } from "react";
 import Project from "./components/Project";
 import { IDebugData, IFeature, IProject, ITask } from "./types/sharedTypes";
 
@@ -115,8 +115,14 @@ function Main()
         tasks={tasks}
         addNewFeatureToList={handleAddNewFeatureToList}
         addNewTaskToList={handleAddNewTaskToList}
+        goBack={handleProjectGoBackButtonClick}
       />
     );
+  };
+
+  const handleProjectGoBackButtonClick = () =>
+  {
+    setSelectedProjectId(null);
   };
 
   const handleAddNewFeatureToList = (feature: IFeature) =>

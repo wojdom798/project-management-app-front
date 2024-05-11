@@ -9,6 +9,7 @@ export interface IProjectProps
     tasks: ITask[];
     addNewFeatureToList: (feature: IFeature) => void;
     addNewTaskToList: (task: ITask) => void;
+    goBack: () => void;
 };
 
 export interface IFeatureProps

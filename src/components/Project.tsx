@@ -89,9 +89,18 @@ function Project(props: IProjectProps)
         }
     };
 
+    const handleGoBackButtonClick = (ev: SyntheticEvent) =>
+    {
+        ev.preventDefault();
+        props.goBack();
+    };
+
     return (
         <div className="project">
-            <h2 className="project__title">{props.name}</h2>
+            <h2 className="project__title">
+                {props.name}
+                <button onClick={handleGoBackButtonClick}>go back</button>
+            </h2>
             <p className="project__description">{props.description}</p>
 
             <div className="project__feature-list">
