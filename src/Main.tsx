@@ -54,6 +54,7 @@ function Main()
           <td>{description}</td>
           <td>
             <button
+              className="button-1"
               onClick={ () => setSelectedProjectId(project.id) }
             >select</button>
           </td>

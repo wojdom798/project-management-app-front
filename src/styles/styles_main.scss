@@ -334,3 +334,30 @@ body
         font-size: 1rem;
     }
 }
+
+.button-1
+{
+    outline: none;
+    background: transparent;
+    border: none;
+    appearance: none;
+    
+    padding: 5px 7px;
+    border: 1px solid #1976d2;
+    border-radius: 3px;
+
+    background-color: #42a5f5;
+    color: #FAFAFA;
+    
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .9rem;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: background-color 150ms ease-in-out;
+
+    &:hover
+    {
+        background-color: #1976d2;
+    }
+}
