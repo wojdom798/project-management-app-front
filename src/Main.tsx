@@ -9,6 +9,11 @@ function Main()
 
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
 
+  const [isNewProjectFormActive, setIsNewProjectFormActive] = useState<boolean>(false);
+  // new project form inputs
+  const [nameField, setNameField] = useState<string>("");
+  const [descriptionField, setDescriptionField] = useState<string>("");
+
   useEffect(() =>
   {
     (async () =>
@@ -27,6 +32,66 @@ function Main()
     })();
   }, []);
 
+
+  const handleNewProjectInputChange = (event: SyntheticEvent, inputId: string) =>
+  {
+    const inputValue = (event.target as HTMLInputElement).value;
+    
+    if (inputId === "PROJECT_NAME_FIELD")
+    {
+      setNameField(inputValue);
+    }
+    else if (inputId === "PROJECT_DESCRIPTION_FIELD")
+    {
+      setDescriptionField(inputValue);
+    }
+  };
+
+  const handleCreateNewProjectFormSubmit = async (event: SyntheticEvent) =>
+  {
+    event.preventDefault();
+
+    interface IResponseData
+    {
+      success: boolean,
+      errors: string[],
+      payload: any
+    };
+
+    const submitData = {
+      name: nameField,
+      description: descriptionField
+    }
+
+    const payload = JSON.stringify(submitData);
+
+    const requestInit = {
+      method: "POST",
+      body: payload,
+      headers: { "Content-Type": "application/json" }
+    };
+    
+    console.log(submitData);
+
+    // const response = await fetch("/api/create-new-project", requestInit);
+
+    // if (response.ok)
+    // {
+    //   const responseData = (await response.json()) as IResponseData;
+
+    //   if (responseData.success)
+    //   {
+    //     // ...
+    //   }
+    // }
+  }
+
+
+  const handleCreateNewProjectFormCancel = (event: SyntheticEvent) =>
+  {
+    event.preventDefault();
+    setIsNewProjectFormActive(false);
+  }
 
   const renderProjectList = (projectList: IProject[]) =>
   {
@@ -64,6 +129,7 @@ function Main()
     }
 
     return (
+      <div>
       <table className="project-list-table">
         <thead>
           <tr>
@@ -77,6 +143,57 @@ function Main()
           {projectListRows}
         </tbody>
       </table>
+
+      {
+        !isNewProjectFormActive ? (
+          <button
+            onClick={() => setIsNewProjectFormActive(!isNewProjectFormActive)}
+          >new project</button>
+        ) : (
+          <form>
+            <h3>Create New Project</h3>
+
+            <div className="form-input-group">
+              <label htmlFor="nameInput">name</label>
+              <input
+                id={"nameInput"}
+                name={"nameInput"}
+                type={"text"}
+                value={nameField}
+                placeholder={"name"}
+                onChange={(ev: SyntheticEvent) => handleNewProjectInputChange(
+                  ev,
+                  "PROJECT_NAME_FIELD"
+                )}
+              />
+            </div>
+
+            <div className="form-input-group">
+              <label htmlFor="descriptionInput">description</label>
+              <input
+                id={"descriptionInput"}
+                name={"descriptionInput"}
+                type={"text"}
+                value={descriptionField}
+                placeholder={"name"}
+                onChange={(ev: SyntheticEvent) => handleNewProjectInputChange(
+                  ev,
+                  "PROJECT_DESCRIPTION_FIELD"
+                )}
+              />
+            </div>
+
+            <button
+              onClick={handleCreateNewProjectFormSubmit}
+            >submit</button>
+            <button
+              onClick={handleCreateNewProjectFormCancel}
+            >close</button>
+          </form>
+        )
+      }
+
+      </div>
     );
   };
 
