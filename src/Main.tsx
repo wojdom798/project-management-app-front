@@ -70,20 +70,25 @@ function Main()
       body: payload,
       headers: { "Content-Type": "application/json" }
     };
-    
-    console.log(submitData);
 
-    // const response = await fetch("/api/create-new-project", requestInit);
+    const response = await fetch("/api/create-new-project", requestInit);
 
-    // if (response.ok)
-    // {
-    //   const responseData = (await response.json()) as IResponseData;
+    if (response.ok)
+    {
+      const responseData = (await response.json()) as IResponseData;
 
-    //   if (responseData.success)
-    //   {
-    //     // ...
-    //   }
-    // }
+      if (responseData.success)
+      {
+        const newProject: IProject = {
+          id: (responseData.payload as { newProjectId: number }).newProjectId,
+          name: nameField,
+          description: descriptionField,
+          features: []
+        };
+
+        setProjects(([] as IProject[]).concat(projects, newProject));
+      }
+    }
   }
 
 
