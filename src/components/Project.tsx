@@ -41,7 +41,8 @@ function Project(props: IProjectProps)
 
         const submitData = {
             name: nameField,
-            priority: priorityField
+            priority: priorityField,
+            projectId: props.id
         }
 
         const payload = JSON.stringify(submitData);
@@ -63,7 +64,7 @@ function Project(props: IProjectProps)
                 ...submitData,
                 id: responseData.payload.newFeatureId,
                 progress: 0
-            });
+            }, props.id);
         }
     };
 

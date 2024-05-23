@@ -248,11 +248,19 @@ function Main()
     setSelectedProjectId(null);
   };
 
-  const handleAddNewFeatureToList = (feature: IFeature) =>
+  const handleAddNewFeatureToList = (feature: IFeature, projectId: number) =>
   {
     const projectsCopy = [...projects];
-    projectsCopy[0].features.push(feature);
-    setProjects(projectsCopy);
+
+    for (const currentProject of projectsCopy)
+    {
+      if (currentProject.id === projectId)
+      {
+        currentProject.features.push(feature);
+        setProjects(projectsCopy);
+        break;
+      }
+    }
   };
 
   const handleAddNewTaskToList = (task: ITask) =>
