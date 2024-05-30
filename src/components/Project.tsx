@@ -60,11 +60,11 @@ function Project(props: IProjectProps)
             const responseData = await response.json();
             // console.log(responseData.payload.newFeatureId);
 
-            props.addNewFeatureToList({
-                ...submitData,
-                id: responseData.payload.newFeatureId,
-                progress: 0
-            }, props.id);
+            // props.addNewFeatureToList({
+            //     ...submitData,
+            //     id: responseData.payload.newFeatureId,
+            //     progress: 0
+            // }, props.id);
         }
     };
 

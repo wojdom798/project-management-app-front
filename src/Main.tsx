@@ -5,6 +5,7 @@ import { IDebugData, IFeature, IProject, ITask } from "./types/sharedTypes";
 function Main()
 {
   const [projects, setProjects] = useState<IProject[]>([]);
+  const [features, setFeatures] = useState<IFeature[]>([]);
   const [tasks, setTasks] = useState<ITask[]>([]);
 
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
@@ -28,6 +29,7 @@ function Main()
       const response = await fetch("/api/get-debug-data", init);
       const data = await response.json() as IDebugData;
       setProjects(data.projects);
+      setFeatures(data.features);
       setTasks(data.tasks);
     })();
   }, []);
@@ -82,8 +84,7 @@ function Main()
         const newProject: IProject = {
           id: (responseData.payload as { newProjectId: number }).newProjectId,
           name: nameField,
-          description: descriptionField,
-          features: []
+          description: descriptionField
         };
 
         setProjects(([] as IProject[]).concat(projects, newProject));
@@ -224,6 +225,16 @@ function Main()
       }
     }
 
+    const projectFeatures: IFeature[] = [];
+
+    for (const feature of features)
+    {
+      if (feature.project_id === selectedProjectId)
+      {
+        projectFeatures.push(feature);
+      }
+    }
+
     if (!selectedProject)
     {
       return (<p>selected project does not exist (error).</p>);
@@ -234,7 +245,7 @@ function Main()
         id={selectedProject.id}
         name={selectedProject.name}
         description={selectedProject.description}
-        features={selectedProject.features}
+        features={projectFeatures}
         tasks={tasks}
         addNewFeatureToList={handleAddNewFeatureToList}
         addNewTaskToList={handleAddNewTaskToList}
@@ -250,17 +261,10 @@ function Main()
 
   const handleAddNewFeatureToList = (feature: IFeature, projectId: number) =>
   {
-    const projectsCopy = [...projects];
-
-    for (const currentProject of projectsCopy)
-    {
-      if (currentProject.id === projectId)
-      {
-        currentProject.features.push(feature);
-        setProjects(projectsCopy);
-        break;
-      }
-    }
+    setFeatures([
+      ...features,
+      feature
+    ]);
   };
 
   const handleAddNewTaskToList = (task: ITask) =>
