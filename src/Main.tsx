@@ -150,9 +150,11 @@ function Main()
         </tbody>
       </table>
 
+      <div className="new-project-section-container">
       {
         !isNewProjectFormActive ? (
           <button
+            className="button-new-item"
             onClick={() => setIsNewProjectFormActive(!isNewProjectFormActive)}
           >new project</button>
         ) : (
@@ -198,6 +200,7 @@ function Main()
           </form>
         )
       }
+      </div>
 
       </div>
     );

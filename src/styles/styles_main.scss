@@ -361,3 +361,36 @@ body
         background-color: #1976d2;
     }
 }
+
+
+.new-project-section-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 20px;
+}
+
+.button-new-item
+{
+    outline: none;
+    background: transparent;
+    border: none;
+    appearance: none;
+    
+    padding: 7px 13px;
+    border: 1px solid #777;
+    border-radius: 3px;
+    font-size: 0.9rem;
+
+    cursor: pointer;
+    transition: background-color 150ms ease-in-out;
+
+    &:hover
+    {
+        background-color: #444;
+        color: #FAFAFA;
+        border-color: #333;
+    }
+}
